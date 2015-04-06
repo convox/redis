@@ -8,4 +8,4 @@ Run a local Redis.
 
 ## License
 
-Apache 2.0 &copy; 2015 David Dollar
+Apache 2.0 &copy; 2015 Convox, Inc.
