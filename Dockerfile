@@ -1,8 +1,18 @@
-FROM redis:2.8.19
+FROM gliderlabs/alpine:3.2
+
+RUN apk-install curl
+
+RUN curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64"
+RUN chmod +x /usr/local/bin/gosu
+
+RUN apk-install redis
 
 ENV REDIS_PASSWORD password
 ENV REDIS_DATABASE 0
 
-ADD redis.sh /usr/local/bin/redis.sh
+COPY docker-entrypoint.sh /
 
-CMD ["/usr/local/bin/redis.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 6379
+CMD ["redis-server", "/tmp/redis.conf"]

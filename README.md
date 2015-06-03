@@ -1,18 +1,37 @@
 # convox/redis
 
-Run a local Redis.
+Redis docker image based on Alpine Linux
+
+This repo builds a docker image that accepts REDIS_PASSWORD. It is similar to the
+[official redis build](https://registry.hub.docker.com/_/redis/) but
+with a much smaller footprint. It achieves that by basing itself off the great
+[alpine](https://github.com/gliderlabs/docker-alpine) docker image by GliderLabs.
 
 ## Usage
 
-Any of the following:
+```bash
+$ docker run -e REDIS_PASSWORD=foo -p 6379:6379 convox/redis
+$ redis-cli -h $(boot2docker ip) -a foo
+192.168.59.103:6379>
+```
 
-    $ docker-compose up
-    $ REDIS_PASSWORD=secret docker-compose up
+## Why?
 
-    $ docker run -p 6379:6379 convox/redis
-    $ docker run -e REDIS_PASSWORD=secret -p 6379:6379 convox/redis
+```bash
+$ docker images
+REPOSITORY       TAG         VIRTUAL SIZE
+convox/redis     latest      13.38 MB
+redis            latest      111 MB
+```
 
-If REDIS_PASSWORD env is not specified, the server password is 'password'.
+Parameterizing REDIS_PASSWORD, is useful for 
+[linking containers](https://docs.docker.com/userguide/dockerlinks/) together.
+
+# Build
+
+```bash
+$ make build
+```
 
 ## License
 
