@@ -1,6 +1,6 @@
 redis:
   build: .
   environment:
-    REDIS_PASSWORD:
+    LINK_PASSWORD:
   ports:
    - "6379:6379"

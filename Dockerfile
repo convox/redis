@@ -7,8 +7,9 @@ RUN chmod +x /usr/local/bin/gosu
 
 RUN apk-install redis
 
-ENV REDIS_PASSWORD password
-ENV REDIS_DATABASE 0
+ENV LINK_SCHEME redis
+ENV LINK_PASSWORD password
+ENV LINK_PATH /0
 
 COPY docker-entrypoint.sh /
 
