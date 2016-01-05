@@ -1,6 +1,0 @@
-redis:
-  build: .
-  environment:
-    LINK_PASSWORD:
-  ports:
-   - "6379:6379"
