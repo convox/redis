@@ -7,6 +7,7 @@ RUN chmod +x /usr/local/bin/gosu
 
 RUN apk-install redis
 
+# convox assembles these into a URL during `convox start`
 ENV LINK_SCHEME redis
 ENV LINK_PASSWORD password
 ENV LINK_PATH /0
