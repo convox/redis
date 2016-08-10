@@ -12,10 +12,18 @@ with a much smaller footprint. It achieves that by basing itself off the great
 
 ## Usage
 
+Ephemeral redis container:
+
 ```bash
 $ docker run -e LINK_PASSWORD=foo -p 6379:6379 convox/redis
 $ redis-cli -h $(boot2docker ip) -a foo
 192.168.59.103:6379>
+```
+
+Enable persistence with shared volume on host:
+
+```bash
+$ docker run -e LINK_PASSWORD=foo -p 6379:6379 -v /tmp/redis-data:/data convox/redis redis-server /tmp/redis.conf --appendonly yes
 ```
 
 ## Why?
