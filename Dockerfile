@@ -1,11 +1,9 @@
-FROM gliderlabs/alpine:3.2
+FROM gliderlabs/alpine:3.4
 
-RUN apk-install curl
+RUN apk add --no-cache curl redis
 
 RUN curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64"
 RUN chmod +x /usr/local/bin/gosu
-
-RUN apk-install redis
 
 # convox assembles these into a URL during `convox start`
 ENV LINK_SCHEME redis
@@ -13,6 +11,8 @@ ENV LINK_PASSWORD password
 ENV LINK_PATH /0
 
 COPY docker-entrypoint.sh /
+
+RUN apk del curl
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
